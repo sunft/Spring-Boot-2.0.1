@@ -1,0 +1,42 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.1.RELEASE'
+
+	}
+	repositories {
+		//mavenCentral()
+		maven {
+			url 'http://maven.aliyun.com/nexus/content/groups/public/'
+		}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.sunft'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	//mavenCentral()
+	maven {
+		url 'http://maven.aliyun.com/nexus/content/groups/public/'
+	}
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch', version: '2.0.1.RELEASE'
+
+    compile group: 'net.java.dev.jna', name: 'jna', version: '4.5.1'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
