@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <meta charset="UTF-8">
+        <title>Thymeleaf in action</title>
+    </head>
+    <body>
+        <div data-th-fragment="header">
+            <ul>
+                <li><a href="/users">首页</a></li>
+            </ul>
+
+            <!--登录判断-->
+            <div sec:authorize="isAuthenticated()">
+                <ul>
+                    <li><span sec:authentication="name"></span></li>
+                </ul>
+                <form action="/logout" th:action="@{/logout}" method="post">
+                    <input type="submit" value="退出"/>
+                </form>
+            </div>
+            <!--匿名用户走下面这段逻辑-->
+            <div sec:authorize="isAnonymous()">
+                <a href="/login" th:href="@{~/login}">登录</a>
+            </div>
+
+        </div>
+    </body>
+</html>

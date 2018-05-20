@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+
+<!--Page content-->
+<div class="container blog-content-container">
+    <!--判断用户是否认证,name表示用户名称,principal.authorities表示用户角色-->
+    <div sec:authorize="isAuthenticated()">
+        <a href="/users/form.html" th:href="@{/users/form}">创建用户</a>
+        <p>已有登录用户</p>
+        <p>登录的用户为:<span sec:authentication="name"></span></p>
+        <p>用户角色为:<span sec:authentication="principal.authorities"></span></p>
+    </div>
+    <!--未认证显示下面这段-->
+    <div sec:authorize="isAnonymous()">
+        <p>未有用户登录</p>
+    </div>
+</div><!-- /.container -->
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+
+<!--Page content-->
+<div class="container blog-content-container">
+    <form th:action="@{~/login}" method="post">
+        <h2>请登录</h2>
+        <div>
+            <label for="username">账号</label>
+            <input type="text" id="username" name="username" />
+        </div>
+        <div>
+            <label for="password">密码</label>
+            <input type="text" id="password" name="password" />
+        </div>
+        <div>
+            <button type="submit">登录</button>
+        </div>
+        <div th:if="${loginError}">
+            <p th:text="${errorMsg}"></p>
+        </div>
+    </form>
+</div><!-- /.container -->
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
